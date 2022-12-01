@@ -24,17 +24,16 @@ func Prompt() {
 }
 
 func count_calories(input string) (int, int) {
-
 	// For each line in the input
+	scanner := bufio.NewScanner(strings.NewReader(input))
 	sums := make([]int, 0)
 	currentSum := 0
-	scanner := bufio.NewScanner(strings.NewReader(input))
 	for scanner.Scan() {
 		line := scanner.Text()
 		// Try to convert line to integer
 		lineInt := 0
 		if _, err := fmt.Sscanf(line, "%d", &lineInt); err == nil {
-			currentSum += int(lineInt)
+			currentSum += lineInt
 		} else {
 			// Otherwise, add the current sum to the list of sums and reset the current sum
 			sums = append(sums, currentSum)
@@ -42,15 +41,7 @@ func count_calories(input string) (int, int) {
 		}
 	}
 
-	// Find the largest sum in sums
-	largestSum := 0
-	for _, sum := range sums {
-		if sum > largestSum {
-			largestSum = sum
-		}
-	}
-
-	// Find the total of the three largest sums
+	// Find the three largest sums
 	// Sort the sums
 	for i := 0; i < len(sums); i++ {
 		for j := i + 1; j < len(sums); j++ {
@@ -62,5 +53,5 @@ func count_calories(input string) (int, int) {
 	// Add the first three
 	largestThreeSums := sums[0] + sums[1] + sums[2]
 
-	return largestSum, largestThreeSums
+	return sums[0], largestThreeSums
 }
