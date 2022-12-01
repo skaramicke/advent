@@ -13,7 +13,8 @@ func Prompt() {
 
 	// Try reading file
 	if input, err := os.ReadFile("inputs/2022-12-01.txt"); err == nil {
-		fmt.Printf("Result: %d\n", count_calories(string(input)))
+		part1, part2 := count_calories(string(input))
+		fmt.Printf("Part 1: %d\nPart 2: %d\n", part1, part2)
 	} else {
 		// If error, create file and ask user to try again
 		os.WriteFile("inputs/2022-12-01.txt", []byte{}, 0644)
@@ -22,7 +23,7 @@ func Prompt() {
 
 }
 
-func count_calories(input string) int {
+func count_calories(input string) (int, int) {
 
 	// For each line in the input
 	sums := make([]int, 0)
@@ -49,5 +50,17 @@ func count_calories(input string) int {
 		}
 	}
 
-	return largestSum
+	// Find the total of the three largest sums
+	// Sort the sums
+	for i := 0; i < len(sums); i++ {
+		for j := i + 1; j < len(sums); j++ {
+			if sums[i] < sums[j] {
+				sums[i], sums[j] = sums[j], sums[i]
+			}
+		}
+	}
+	// Add the first three
+	largestThreeSums := sums[0] + sums[1] + sums[2]
+
+	return largestSum, largestThreeSums
 }
