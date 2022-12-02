@@ -50,6 +50,34 @@ func Prompt() {
 
 // What would your total score be if everything goes exactly according to your strategy guide?
 
+// Boring solution:
+// func totalRockPaperScissorScore(input string) int {
+// 	lose := 0
+// 	win := 6
+// 	tie := 3
+// 	rock := 1
+// 	paper := 2
+// 	scissors := 3
+// 	scoreMap := map[string]int{
+// 		"A X": rock + tie,      // Rock vs Rock
+// 		"A Y": paper + win,     // Rock vs Paper
+// 		"A Z": scissors + lose, // Rock vs Scissors
+// 		"B X": rock + lose,     // Paper vs Rock
+// 		"B Y": paper + tie,     // Paper vs Paper
+// 		"B Z": scissors + win,  // Paper vs Scissors
+// 		"C X": rock + win,      // Scissors vs Rock
+// 		"C Y": paper + lose,    // Scissors vs Paper
+// 		"C Z": scissors + tie,  // Scissors vs Scissors
+// 	}
+
+// 	totalScore := 0
+
+// 	for _, line := range strings.Split(input, "\n") {
+// 		totalScore += scoreMap[line]
+// 	}
+// 	return totalScore
+// }
+
 func totalRockPaperScissorScore(input string) int {
 
 	// Split the input into lines.
