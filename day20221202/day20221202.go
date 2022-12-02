@@ -12,8 +12,8 @@ func Prompt() {
 
 	// Try reading file
 	if input, err := os.ReadFile("inputs/2022-12-02.txt"); err == nil {
-		part1 := task1(string(input))
-		part2 := task2(string(input))
+		part1 := totalRockPaperScissorScore(string(input))
+		part2 := totalWithCorrectInstructions(string(input))
 		fmt.Printf("Part 1: %d\nPart 2: %d\n", part1, part2)
 	} else {
 		// If error, create file and ask user to try again
@@ -23,7 +23,7 @@ func Prompt() {
 
 }
 
-func task1(input string) int {
+func totalRockPaperScissorScore(input string) int {
 
 	// Split the input into lines.
 	lines := strings.Split(input, "\n")
@@ -81,7 +81,7 @@ func task1(input string) int {
 	return totalScore
 }
 
-func task2(input string) int {
+func totalWithCorrectInstructions(input string) int {
 
 	// Split the input into lines.
 	lines := strings.Split(input, "\n")
