@@ -64,26 +64,3 @@ func splitAssignment(assignment string) (int, int) {
 	// Return the start and end sections as integers
 	return start, end
 }
-
-// func countAlEncompassingPairs(text string) int {
-// 	// Split the input into an array of strings
-// 	pairs := strings.Split(text, "\n")
-
-// 	count := 0
-
-// 	for _, pair := range pairs {
-// 		fmt.Printf("Pair: %s - ", pair)
-// 		pairs := strings.Split(pair, ",")
-// 		left, right := strings.Split(pairs[0], "-"), strings.Split(pairs[1], "-")
-// 		leftLow, leftHigh := left[0], left[1]
-// 		rightLow, rightHigh := right[0], right[1]
-// 		fmt.Printf("%s, %s, %s, %s - ", leftLow, leftHigh, rightLow, rightHigh)
-// 		if (leftLow <= rightLow && leftHigh >= rightHigh) || (leftLow >= rightLow && leftHigh <= rightHigh) {
-// 			println("Yes")
-// 			count++
-// 		} else {
-// 			println("No")
-// 		}
-// 	}
-// 	return count
-// }
