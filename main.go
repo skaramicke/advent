@@ -13,6 +13,7 @@ func main() {
 	prompt := promptui.Select{
 		Label: "Select Day",
 		Items: []string{
+			"December 4",
 			"December 3",
 			"December 2",
 			"December 1",
@@ -33,5 +34,7 @@ func main() {
 		day20221202.Run()
 	case "December 3":
 		day20221203.Run()
+	case "December 4":
+		day20221204.Run()
 	}
 }
