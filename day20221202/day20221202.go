@@ -2,25 +2,16 @@ package day20221202
 
 import (
 	"fmt"
-	"os"
 	"strings"
+
+	"github.com/skaramicke/advent/utils"
 )
 
-func Prompt() {
-	// If inputs/2022-12-02.txt exists, use that as input
-	// Otherwise, create it and ask user to try again
-
-	// Try reading file
-	if input, err := os.ReadFile("inputs/2022-12-02.txt"); err == nil {
-		part1 := totalRockPaperScissorScore(string(input))
-		part2 := totalWithCorrectInstructions(string(input))
-		fmt.Printf("Part 1: %d\nPart 2: %d\n", part1, part2)
-	} else {
-		// If error, create file and ask user to try again
-		os.WriteFile("inputs/2022-12-02.txt", []byte{}, 0644)
-		println("Please try again after adding input to inputs/2022-12-02.txt")
-	}
-
+func Run() {
+	input := utils.ReadOrCreateInputFile("2022-12-02")
+	part1 := totalRockPaperScissorScore(string(input))
+	part2 := totalWithCorrectInstructions(string(input))
+	fmt.Printf("Part 1: %d\nPart 2: %d\n", part1, part2)
 }
 
 // --- Day 2: Rock Paper Scissors ---

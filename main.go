@@ -25,8 +25,8 @@ func main() {
 
 	switch result {
 	case "December 1":
-		day20221201.Prompt()
+		day20221201.Run()
 	case "December 2":
-		day20221202.Prompt()
+		day20221202.Run()
 	}
 }
