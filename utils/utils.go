@@ -12,7 +12,8 @@ func ReadOrCreateInputFile(day string) string {
 	} else {
 		// If error, create file and ask user to try again
 		os.WriteFile(filename, []byte{}, 0644)
-		fmt.Printf("please try again after adding input to %s", filename)
-		panic("input file not found")
+		fmt.Printf("please try again after adding input to %s\n", filename)
+		os.Exit(0)
+		return ""
 	}
 }
