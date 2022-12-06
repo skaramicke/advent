@@ -1,0 +1,21 @@
+package day$YEAR$MONTH$DAY
+
+import (
+	"fmt"
+
+	"github.com/skaramicke/advent/utils"
+)
+
+func Run() {
+	input := utils.ReadOrCreateInputFile("$YEAR-$MONTH-$DAY")
+	fmt.Printf("Task 1 result: %d\n", task_1(input))
+	fmt.Printf("Task 2 result: %d\n", task_2(input))
+}
+
+func task_1(input string) int {
+	return 0
+}
+
+func task_2(input string) int {
+	return 0
+}

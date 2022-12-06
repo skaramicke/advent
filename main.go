@@ -7,6 +7,7 @@ import (
 	"github.com/skaramicke/advent/day20221204"
 	"github.com/skaramicke/advent/day20221205"
 	"github.com/skaramicke/advent/day20221206"
+	// new imports go here
 
 	"github.com/manifoldco/promptui"
 )
@@ -15,12 +16,13 @@ func main() {
 	prompt := promptui.Select{
 		Label: "Select Day",
 		Items: []string{
-			"December 6",
-			"December 5",
-			"December 4",
-			"December 3",
-			"December 2",
-			"December 1",
+			// new options go here
+			"December 6, 2022",
+			"December 5, 2022",
+			"December 4, 2022",
+			"December 3, 2022",
+			"December 2, 2022",
+			"December 1, 2022",
 		},
 	}
 
@@ -32,17 +34,18 @@ func main() {
 	}
 
 	switch result {
-	case "December 1":
+	case "December 1, 2022":
 		day20221201.Run()
-	case "December 2":
+	case "December 2, 2022":
 		day20221202.Run()
-	case "December 3":
+	case "December 3, 2022":
 		day20221203.Run()
-	case "December 4":
+	case "December 4, 2022":
 		day20221204.Run()
-	case "December 5":
+	case "December 5, 2022":
 		day20221205.Run()
-	case "December 6":
+	case "December 6, 2022":
 		day20221206.Run()
+		// new calls go here
 	}
 }
