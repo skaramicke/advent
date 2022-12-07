@@ -10,11 +10,12 @@ import (
 
 func Run() {
 	input := utils.ReadOrCreateInputFile("2022-12-07")
-	fmt.Printf("Task 1 result: %d\n", smallDirectorySizeTotal(input))
-	fmt.Printf("Task 2 result: %d\n", task_2(input))
+	result1, result2 := processDirectories(input)
+	fmt.Printf("Task 1 result: %d\n", result1)
+	fmt.Printf("Task 2 result: %d\n", result2)
 }
 
-func smallDirectorySizeTotal(input string) int {
+func processDirectories(input string) (int, int) {
 	lines := strings.Split(input, "\n")
 	directoryStack := []string{}
 	directorySizes := map[string]int{}
@@ -55,9 +56,13 @@ func smallDirectorySizeTotal(input string) int {
 		}
 	}
 
-	return smallDirectorySum
-}
+	requiredRemoval := 30000000 - (70000000 - recursiveDirSizes["/"])
+	smallestDirSizeOverLimit := recursiveDirSizes["/"]
+	for _, size := range recursiveDirSizes {
+		if size > requiredRemoval && size < smallestDirSizeOverLimit {
+			smallestDirSizeOverLimit = size
+		}
+	}
 
-func task_2(input string) int {
-	return 0
+	return smallDirectorySum, smallestDirSizeOverLimit
 }
