@@ -55,10 +55,6 @@ func smallDirectorySizeTotal(input string) int {
 		}
 	}
 
-	for directory, size := range directorySizes {
-		fmt.Printf("%s: %d\n", directory, size)
-	}
-
 	return smallDirectorySum
 }
 
