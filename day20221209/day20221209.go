@@ -10,11 +10,11 @@ import (
 
 func Run() {
 	input := utils.ReadOrCreateInputFile("2022-12-09")
-	fmt.Printf("Task 1 result: %d\n", simulateRope(input, 2))
-	fmt.Printf("Task 2 result: %d\n", simulateRope(input, 10))
+	fmt.Printf("Task 1 result: %d\n", simulateRope(input, 2, false))
+	fmt.Printf("Task 2 result: %d\n", simulateRope(input, 10, false))
 }
 
-func simulateRope(input string, knots int) int {
+func simulateRope(input string, knots int, draw bool) int {
 	tailPositions := map[string]bool{
 		"0x0": true,
 	}
@@ -88,7 +88,9 @@ func simulateRope(input string, knots int) int {
 			tailPositions[fmt.Sprintf("%dx%d", positions[knots-1][0], positions[knots-1][1])] = true
 		}
 	}
-	// drawPositions(positions, tailPositions, minX, maxX, minY, maxY)
+	if draw {
+		drawPositions(positions, tailPositions, minX, maxX, minY, maxY)
+	}
 	return len(tailPositions)
 }
 
