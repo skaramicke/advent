@@ -9,8 +9,9 @@ import (
 
 func Run() {
 	input := utils.ReadOrCreateInputFile("2022-12-12")
-	fmt.Printf("Task 1 result: %d\n", task_1(input))
-	fmt.Printf("Task 2 result: %d\n", task_2(input))
+	fromStoE, fromAtoE := findDistances(input)
+	fmt.Printf("Task 1 result: %d\n", fromStoE)
+	fmt.Printf("Task 2 result: %d\n", fromAtoE)
 }
 
 type Location struct {
@@ -18,7 +19,7 @@ type Location struct {
 	Y int
 }
 
-func task_1(input string) int {
+func findDistances(input string) (int, int) {
 
 	start := Location{0, 0}
 	end := Location{0, 0}
@@ -28,7 +29,7 @@ func task_1(input string) int {
 		for x, char := range line {
 			if char == 'S' {
 				start = Location{x, y}
-				continue
+				char = 'a'
 			} else if char == 'E' {
 				end = Location{x, y}
 				char = 'z'
@@ -40,18 +41,32 @@ func task_1(input string) int {
 		}
 	}
 
-	distances := map[int]map[int]int{}
-	findNextDistance(start.X, start.Y, 0, area, distances)
+	distancesFromS := map[int]map[int]int{}
+	findNextDistance(start.X, start.Y, 0, area, distancesFromS, true)
 
-	return distances[end.X][end.Y]
+	distancesFromE := map[int]map[int]int{}
+	findNextDistance(end.X, end.Y, 0, area, distancesFromE, false)
+	shortestDistanceFromGround := -1
+	for x, yDistances := range distancesFromE {
+		for y, distance := range yDistances {
+			if area[x][y] == 0 && (shortestDistanceFromGround == -1 || distance < shortestDistanceFromGround) {
+				shortestDistanceFromGround = distance
+			}
+		}
+	}
+
+	return distancesFromS[end.X][end.Y], shortestDistanceFromGround
 }
 
-func findNextDistance(x, y, distance int, area, distances map[int]map[int]int) {
+func findNextDistance(x, y, distance int, area, distances map[int]map[int]int, up bool) {
 
 	for _, dir := range []Location{{0, -1}, {-1, 0}, {1, 0}, {0, 1}} {
 		if _, ok := area[x+dir.X]; ok {
 			if _, ok := area[x+dir.X][y+dir.Y]; ok {
-				if area[x+dir.X][y+dir.Y]-area[x][y] > 1 {
+				if up && area[x+dir.X][y+dir.Y]-area[x][y] > 1 {
+					continue
+				}
+				if !up && area[x][y]-area[x+dir.X][y+dir.Y] > 1 {
 					continue
 				}
 				if _, ok := distances[x+dir.X]; !ok {
@@ -59,7 +74,7 @@ func findNextDistance(x, y, distance int, area, distances map[int]map[int]int) {
 				}
 				if _, ok := distances[x+dir.X][y+dir.Y]; !ok || distances[x+dir.X][y+dir.Y] > distance+1 {
 					distances[x+dir.X][y+dir.Y] = distance + 1
-					findNextDistance(x+dir.X, y+dir.Y, distance+1, area, distances)
+					findNextDistance(x+dir.X, y+dir.Y, distance+1, area, distances, up)
 				}
 			}
 		}
@@ -204,7 +219,3 @@ func findNextDistance(x, y, distance int, area, distances map[int]map[int]int) {
 
 // 	return -1, []Location{}
 // }
-
-func task_2(input string) int {
-	return 0
-}
