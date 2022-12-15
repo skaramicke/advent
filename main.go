@@ -13,6 +13,7 @@ import (
 	"github.com/skaramicke/advent/day20221210"
 	"github.com/skaramicke/advent/day20221211"
 	"github.com/skaramicke/advent/day20221212"
+	"github.com/skaramicke/advent/day20221213"
 	// new imports go here
 
 	"github.com/manifoldco/promptui"
@@ -23,6 +24,7 @@ func main() {
 		Label: "Select Day",
 		Items: []string{
 			// new options go here
+			"December 13, 2022",
 			"December 12, 2022",
 			"December 11, 2022",
 			"December 10, 2022",
@@ -70,6 +72,8 @@ func main() {
 		day20221211.Run()
 	case "December 12, 2022":
 		day20221212.Run()
+	case "December 13, 2022":
+		day20221213.Run()
 		// new calls go here
 	}
 }
